@@ -270,12 +270,7 @@ namespace CRFMNES.Utils
         // /演算子オーバーロード
         public static Vector operator /(double x, Vector v)
         {
-            Vector vec = Vector.Fill(v.value.Length, x);
-            for (int i = 0; i < vec.value.Length; ++i)
-            {
-                vec.value[i] /= v.value[i];
-            }
-            return vec;
+            return Fill(v.value.Length, x) / v;
         }
 
         // &演算子オーバーロード
