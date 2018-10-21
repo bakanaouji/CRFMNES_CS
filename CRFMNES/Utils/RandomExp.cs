@@ -1,0 +1,32 @@
+﻿using System;
+namespace CRFMNES.Utils
+{
+    public class RandomExp
+    {
+        public RandomExp()
+        {
+            random = new Random();
+        }
+
+        public float RandN()
+        {
+            double rand1 = random.NextDouble();
+            double rand2 = random.NextDouble();
+            return (float)(Math.Sqrt(-2.0 * Math.Log(rand1)) * Math.Cos(2.0 * Math.PI * rand2));
+        }
+
+        public Vector RandN(int dim)
+        {
+            Vector vec = new Vector(dim);
+            for (int i = 0; i < dim; ++i) {
+                double rand1 = random.NextDouble();
+                double rand2 = random.NextDouble();
+                vec[i] = (float)(Math.Sqrt(-2.0 * Math.Log(rand1)) * Math.Cos(2.0 * Math.PI * rand2));
+            }
+            return vec;
+        }
+
+
+        private Random random;
+    }
+}

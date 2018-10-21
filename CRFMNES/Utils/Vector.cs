@@ -50,6 +50,34 @@ namespace CRFMNES.Utils
             return value.Length;
         }
 
+        // fill
+        public static Vector Fill(int dim, float value)
+        {
+            return new Vector(dim) + value;
+        }
+
+        // arange
+        public static Vector Arange(int start, int stop)
+        {
+            int dim = stop - start;
+            Vector vec = new Vector(dim);
+            for (int i = 0; i < dim; ++i)
+            {
+                vec[i] = (float)start + i;
+            }
+            return vec;
+        }
+
+        // log
+        public static Vector Log(Vector v)
+        {
+            Vector vec = new Vector(v);
+            for (int i = 0; i < vec.GetDim(); ++i) {
+                vec[i] = (float)Math.Log(vec[i]);
+            }
+            return vec;
+        }
+
         // +演算子オーバーロード
         public static Vector operator +(Vector v)
         {
@@ -142,6 +170,17 @@ namespace CRFMNES.Utils
                 vec.value[i] /= x;
             }
             return vec;
+        }
+
+        // 和を取得
+        public float Sum()
+        {
+            float sum = 0.0f;
+            for (int i = 0; i < this.GetDim(); ++i)
+            {
+                sum += this[i];
+            }
+            return sum;
         }
 
         // L2ノルムを取得
