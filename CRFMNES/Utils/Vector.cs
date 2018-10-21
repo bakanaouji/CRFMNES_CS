@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
+
 namespace CRFMNES.Utils
 {
     public class Vector
@@ -6,17 +8,17 @@ namespace CRFMNES.Utils
         // コンストラクタ
         public Vector(int dim)
         {
-            value = new float[dim];
+            value = new double[dim];
             for (int i = 0; i < dim; ++i)
             {
-                value[i] = 0.0f;
+                value[i] = 0.0;
             }
         }
 
         // 二次元コンストラクタ
-        public Vector(float x, float y)
+        public Vector(double x, double y)
         {
-            value = new float[2];
+            value = new double[2];
             value[0] = x;
             value[1] = y;
         }
@@ -24,7 +26,7 @@ namespace CRFMNES.Utils
         // コピーコンストラクタ
         public Vector(Vector v)
         {
-            value = new float[v.value.Length];
+            value = new double[v.value.Length];
             for (int i = 0; i < v.value.Length; ++i)
             {
                 value[i] = v.value[i];
@@ -32,7 +34,7 @@ namespace CRFMNES.Utils
         }
 
         // インデクサ
-        public float this[int index]
+        public double this[int index]
         {
             set
             {
@@ -50,8 +52,71 @@ namespace CRFMNES.Utils
             return value.Length;
         }
 
+        // 最大値を取得
+        public double Max()
+        {
+            double max = value[0];
+            for (int i = 1; i < value.Length; ++i)
+            {
+                if (max < value[i])
+                {
+                    max = value[i];
+                }
+            }
+            return max;
+        }
+
+        // 和を取得
+        public double Sum()
+        {
+            double sum = 0.0;
+            for (int i = 0; i < value.Length; ++i)
+            {
+                sum += value[i];
+            }
+            return sum;
+        }
+
+        // L2ノルムの二乗を取得
+        public double NormPow()
+        {
+            return (this & this);
+        }
+
+        // L2ノルムを取得
+        public double Norm()
+        {
+            return Math.Sqrt(NormPow());
+        }
+
+        // 正規化
+        public void Normalize()
+        {
+            double norm = Norm();
+            for (int i = 0; i < value.Length; ++i)
+            {
+                value[i] /= norm;
+            }
+        }
+
+        // 文字列
+        public override string ToString()
+        {
+            string str = "Vector(";
+            for (int i = 0; i < value.Length; ++i)
+            {
+                str += value[i].ToString();
+                if (i < value.Length - 1)
+                {
+                    str += ", ";
+                }
+            }
+            str += ")";
+            return str;
+        }
+
         // fill
-        public static Vector Fill(int dim, float value)
+        public static Vector Fill(int dim, double value)
         {
             return new Vector(dim) + value;
         }
@@ -59,11 +124,12 @@ namespace CRFMNES.Utils
         // arange
         public static Vector Arange(int start, int stop)
         {
+            Contract.Ensures(Contract.Result<Vector>() != null);
             int dim = stop - start;
             Vector vec = new Vector(dim);
             for (int i = 0; i < dim; ++i)
             {
-                vec[i] = (float)start + i;
+                vec[i] = (double)start + i;
             }
             return vec;
         }
@@ -73,7 +139,7 @@ namespace CRFMNES.Utils
         {
             Vector vec = new Vector(v);
             for (int i = 0; i < vec.GetDim(); ++i) {
-                vec[i] = (float)Math.Log(vec[i]);
+                vec[i] = Math.Log(vec[i]);
             }
             return vec;
         }
@@ -96,7 +162,7 @@ namespace CRFMNES.Utils
         }
 
         // +演算子オーバーロード
-        public static Vector operator +(Vector v, float x)
+        public static Vector operator +(Vector v, double x)
         {
             Vector vec = new Vector(v);
             for (int i = 0; i < vec.value.Length; ++i)
@@ -104,6 +170,12 @@ namespace CRFMNES.Utils
                 vec.value[i] += x;
             }
             return vec;
+        }
+
+        // +演算子オーバーロード
+        public static Vector operator +(double x, Vector v)
+        {
+            return v + x;
         }
 
         // -演算子オーバーロード
@@ -129,7 +201,7 @@ namespace CRFMNES.Utils
         }
 
         // -演算子オーバーロード
-        public static Vector operator -(Vector v, float x)
+        public static Vector operator -(Vector v, double x)
         {
             Vector vec = new Vector(v);
             for (int i = 0; i < vec.value.Length; ++i)
@@ -139,26 +211,10 @@ namespace CRFMNES.Utils
             return vec;
         }
 
-        // *演算子オーバーロード
-        public static Vector operator *(Vector v, float x)
+        // -演算子オーバーロード
+        public static Vector operator -(double x, Vector v)
         {
-            Vector vec = new Vector(v);
-            for (int i = 0; i < vec.value.Length; ++i)
-            {
-                vec.value[i] *= x;
-            }
-            return vec;
-        }
-
-        // *演算子オーバーロード
-        public static Vector operator *(float x, Vector v)
-        {
-            Vector vec = new Vector(v);
-            for (int i = 0; i < vec.value.Length; ++i)
-            {
-                vec.value[i] *= x;
-            }
-            return vec;
+            return -v + x;
         }
 
         // *演算子オーバーロード
@@ -172,37 +228,21 @@ namespace CRFMNES.Utils
             return vec;
         }
 
-        // &演算子オーバーロード
-        public static float operator &(Vector v1, Vector v2)
-        {
-            float ip = 0.0f;
-            for (int i = 0; i < v1.value.Length; ++i)
-            {
-                ip += v1.value[i] * v2.value[i];
-            }
-            return ip;
-        }
-
-        // /演算子オーバーロード
-        public static Vector operator /(Vector v, float x)
+        // *演算子オーバーロード
+        public static Vector operator *(Vector v, double x)
         {
             Vector vec = new Vector(v);
             for (int i = 0; i < vec.value.Length; ++i)
             {
-                vec.value[i] /= x;
+                vec.value[i] *= x;
             }
             return vec;
         }
 
-        // /演算子オーバーロード
-        public static Vector operator /(float x, Vector v)
+        // *演算子オーバーロード
+        public static Vector operator *(double x, Vector v)
         {
-            Vector vec = new Vector(v);
-            for (int i = 0; i < vec.value.Length; ++i)
-            {
-                vec.value[i] /= x;
-            }
-            return vec;
+            return v * x;
         }
 
         // /演算子オーバーロード
@@ -216,65 +256,40 @@ namespace CRFMNES.Utils
             return vec;
         }
 
-        // 最大値を取得
-        public float Max()
+        // /演算子オーバーロード
+        public static Vector operator /(Vector v, double x)
         {
-            float max = value[0];
-            for (int i = 1; i < value.Length; ++i) {
-                if (max < value[i]) {
-                    max = value[i];
-                }
-            }
-            return max;
-        }
-
-        // 和を取得
-        public float Sum()
-        {
-            float sum = 0.0f;
-            for (int i = 0; i < value.Length; ++i)
+            Vector vec = new Vector(v);
+            for (int i = 0; i < vec.value.Length; ++i)
             {
-                sum += value[i];
+                vec.value[i] /= x;
             }
-            return sum;
+            return vec;
         }
 
-        // L2ノルムの二乗を取得
-        public float NormPow()
+        // /演算子オーバーロード
+        public static Vector operator /(double x, Vector v)
         {
-            return (this & this);
-        }
-
-        // L2ノルムを取得
-        public float Norm()
-        {
-            return NormPow();
-        }
-
-        // 正規化
-        public void Normalize()
-        {
-            float norm = Norm();
-            for (int i = 0; i < value.Length; ++i)
+            Vector vec = Vector.Fill(v.value.Length, x);
+            for (int i = 0; i < vec.value.Length; ++i)
             {
-                value[i] /= norm;
+                vec.value[i] /= v.value[i];
             }
+            return vec;
         }
 
-        public override string ToString()
+        // &演算子オーバーロード
+        public static double operator &(Vector v1, Vector v2)
         {
-            string str = "Vector(";
-            for (int i = 0; i < value.Length; ++i) {
-                str += value[i].ToString();
-                if (i < value.Length - 1) {
-                    str += ", ";
-                }
+            double ip = 0.0;
+            for (int i = 0; i < v1.value.Length; ++i)
+            {
+                ip += v1.value[i] * v2.value[i];
             }
-            str += ")";
-            return str;
+            return ip;
         }
 
         // 要素
-        private float[] value;
+        private double[] value;
     }
 }

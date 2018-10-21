@@ -8,11 +8,11 @@ namespace CRFMNES.Utils
             random = new Random();
         }
 
-        public float RandN()
+        public double RandN()
         {
             double rand1 = random.NextDouble();
             double rand2 = random.NextDouble();
-            return (float)(Math.Sqrt(-2.0 * Math.Log(rand1)) * Math.Cos(2.0 * Math.PI * rand2));
+            return Math.Sqrt(-2.0 * Math.Log(rand1)) * Math.Cos(2.0 * Math.PI * rand2);
         }
 
         public Vector RandN(int dim)
