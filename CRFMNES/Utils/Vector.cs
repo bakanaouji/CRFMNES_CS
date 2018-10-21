@@ -151,7 +151,29 @@ namespace CRFMNES.Utils
         }
 
         // *演算子オーバーロード
-        public static float operator *(Vector v1, Vector v2)
+        public static Vector operator *(float x, Vector v)
+        {
+            Vector vec = new Vector(v);
+            for (int i = 0; i < vec.value.Length; ++i)
+            {
+                vec.value[i] *= x;
+            }
+            return vec;
+        }
+
+        // *演算子オーバーロード
+        public static Vector operator *(Vector v1, Vector v2)
+        {
+            Vector vec = new Vector(v1);
+            for (int i = 0; i < v2.value.Length; ++i)
+            {
+                vec.value[i] *= v2.value[i];
+            }
+            return vec;
+        }
+
+        // &演算子オーバーロード
+        public static float operator &(Vector v1, Vector v2)
         {
             float ip = 0.0f;
             for (int i = 0; i < v1.value.Length; ++i)
@@ -172,27 +194,67 @@ namespace CRFMNES.Utils
             return vec;
         }
 
+        // /演算子オーバーロード
+        public static Vector operator /(float x, Vector v)
+        {
+            Vector vec = new Vector(v);
+            for (int i = 0; i < vec.value.Length; ++i)
+            {
+                vec.value[i] /= x;
+            }
+            return vec;
+        }
+
+        // /演算子オーバーロード
+        public static Vector operator /(Vector v1, Vector v2)
+        {
+            Vector vec = new Vector(v1);
+            for (int i = 0; i < v2.value.Length; ++i)
+            {
+                vec.value[i] /= v2.value[i];
+            }
+            return vec;
+        }
+
+        // 最大値を取得
+        public float Max()
+        {
+            float max = value[0];
+            for (int i = 1; i < value.Length; ++i) {
+                if (max < value[i]) {
+                    max = value[i];
+                }
+            }
+            return max;
+        }
+
         // 和を取得
         public float Sum()
         {
             float sum = 0.0f;
-            for (int i = 0; i < this.GetDim(); ++i)
+            for (int i = 0; i < value.Length; ++i)
             {
-                sum += this[i];
+                sum += value[i];
             }
             return sum;
+        }
+
+        // L2ノルムの二乗を取得
+        public float NormPow()
+        {
+            return (this & this);
         }
 
         // L2ノルムを取得
         public float Norm()
         {
-            return (float)(Math.Sqrt(this * this));
+            return NormPow();
         }
 
         // 正規化
         public void Normalize()
         {
-            float norm = this.Norm();
+            float norm = Norm();
             for (int i = 0; i < value.Length; ++i)
             {
                 value[i] /= norm;
