@@ -261,6 +261,19 @@ namespace CRFMNES.Utils
             }
         }
 
+        public override string ToString()
+        {
+            string str = "Vector(";
+            for (int i = 0; i < value.Length; ++i) {
+                str += value[i].ToString();
+                if (i < value.Length - 1) {
+                    str += ", ";
+                }
+            }
+            str += ")";
+            return str;
+        }
+
         // 要素
         private float[] value;
     }
