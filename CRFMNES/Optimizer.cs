@@ -192,7 +192,7 @@ namespace CRFMNES
             Vector[] sStep2 = new Vector[lamb + 1];
             for (int i = 0; i < lamb + 1; ++i)
             {
-                sStep1[i] = yy[i] - normV2 / gammaV * (yvBar[i] * ipYvBar[i]) + Vector.Fill(dim, 1.0);
+                sStep1[i] = yy[i] - normV2 / gammaV * (yvBar[i] * ipYvBar[i]) - Vector.Fill(dim, 1.0);
             }
             double[] ipVBarT = new double[lamb + 1];
             for (int i = 0; i < lamb + 1; ++i)
@@ -246,7 +246,7 @@ namespace CRFMNES
             }
             double GSigma = tmpG.Sum() / dim;
             double lSigma = psNorm >= chiN && GSigma < 0.0 ? 1.0 : 0.0;
-            sigma *= Math.Exp((1.0 - lSigma) * etaSigma / 2.0 * GSigma) * nThRootDetAOld;
+            sigma *= Math.Exp((1.0 - lSigma) * etaSigma / 2.0 * GSigma) * nThRootDetA / nThRootDetAOld;
             D /= nThRootDetA;
         }
 
