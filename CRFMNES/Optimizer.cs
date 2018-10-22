@@ -137,7 +137,7 @@ namespace CRFMNES
 
             // evolution path p_sigma
             Vector psBase = new Vector(dim);
-            for (int i = 0; i < dim; ++i)
+            for (int i = 0; i < lamb; ++i)
             {
                 psBase += z[i] * wRank[i];
             }
@@ -156,7 +156,7 @@ namespace CRFMNES
             double lc = psNorm >= chiN ? 1.0 : 0.0;
             // update pc, m
             Vector wxm = new Vector(dim);
-            for (int i = 0; i < dim; ++i)
+            for (int i = 0; i < lamb; ++i)
             {
                 wxm += (x[i] - m) * weights[i];
             }
