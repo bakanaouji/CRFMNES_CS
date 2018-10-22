@@ -1,4 +1,5 @@
 ﻿using System;
+using CRFMNES.Utils;
 
 namespace CRFMNES
 {
@@ -6,7 +7,12 @@ namespace CRFMNES
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            int dim = 3;
+            double f(Vector x) => ((x & x));
+            Vector mean = Vector.Fill(dim, 0.5);
+            double sigma = 0.2;
+            int lamb = 6;
+            Optimizer optimizer = new Optimizer(dim, f, mean, sigma, lamb);
         }
     }
 }

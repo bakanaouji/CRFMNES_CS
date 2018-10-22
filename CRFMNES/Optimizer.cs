@@ -16,13 +16,12 @@ namespace CRFMNES
             this.m = m;
             this.sigma = sigma;
             this.lamb = lamb;
-
             random = new RandomExp();
 
             v = random.RandN(dim) / Math.Sqrt(dim);
-            D = new Vector(dim) + 1.0;
+            D = Vector.Fill(dim, 1.0);
 
-            wRankHat = Vector.Fill(lamb, Math.Log(lamb / 2.0 + 1.0)) - Vector.Arange(1, lamb + 1);
+            wRankHat = Vector.Fill(lamb, Math.Log(lamb / 2.0 + 1.0)) - Vector.Log(Vector.Arange(1, lamb + 1));
             for (int i = 0; i < lamb; ++i)
             {
                 if (wRankHat[i] < 0.0)
