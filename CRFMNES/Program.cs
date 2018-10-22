@@ -13,6 +13,11 @@ namespace CRFMNES
             double sigma = 0.2;
             int lamb = 6;
             Optimizer optimizer = new Optimizer(dim, f, mean, sigma, lamb);
+            for (int i = 0; i < 100; ++i) {
+                optimizer.OneIteration();
+            }
+            Console.WriteLine(optimizer.XBest);
+            Console.WriteLine(optimizer.FBest);
         }
     }
 }

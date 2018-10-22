@@ -53,6 +53,8 @@ namespace CRFMNES
             g = 0;
             noOfEvals = 0;
 
+            fBest = Double.PositiveInfinity;
+            xBest = new Vector(dim);
         }
 
         public double GetHInv(int dim)
@@ -121,11 +123,15 @@ namespace CRFMNES
             }
 
             SortBy(evalsNoSort, x, y, z);
-            double fBest = evalsNoSort[0];
-            Vector xBest = x[0];
+            double fB = evalsNoSort[0];
+            Vector xB = x[0];
 
             noOfEvals += lamb;
             g += 1;
+            if (fB < fBest) {
+                fBest = fB;
+                xBest = xB;
+            }
 
             int lambF = lamb;
 
@@ -149,8 +155,8 @@ namespace CRFMNES
             double etaSigma = psNorm >= chiN ? etaMoveSigma : (psNorm >= 0.1 * chiN ? etaStagSigma(lambF) : etaConvSigma(lambF));
             double lc = psNorm >= chiN ? 1.0 : 0.0;
             // update pc, m
-            Vector wxm = new Vector(lamb);
-            for (int i = 0; i < lamb; ++i)
+            Vector wxm = new Vector(dim);
+            for (int i = 0; i < dim; ++i)
             {
                 wxm += (x[i] - m) * weights[i];
             }
@@ -249,6 +255,16 @@ namespace CRFMNES
             D /= nThRootDetA;
         }
 
+        public double FBest
+        {
+            get { return fBest; }
+        }
+
+        public Vector XBest
+        {
+            get { return xBest; }
+        }
+
         private int dim;
         private ObjFunc objFunc;
         private Vector m;
@@ -279,5 +295,8 @@ namespace CRFMNES
         private int g;
         private int noOfEvals;
         private RandomExp random;
+
+        private double fBest;
+        private Vector xBest;
     }
 }
