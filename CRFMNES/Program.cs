@@ -58,7 +58,7 @@ namespace CRFMNES
                 Vector mean = Vector.Fill(dim, 0.0);
                 double sigma = 2.0;
                 int lamb = 40;
-                Optimizer optimizer = new Optimizer(dim, RosenbrockChain, mean, sigma, lamb);
+                CRFMNES optimizer = new CRFMNES(dim, RosenbrockChain, mean, sigma, lamb);
                 int evalCnt = 0;
                 while (optimizer.FBest >= 1e-12)
                 {
@@ -84,7 +84,7 @@ namespace CRFMNES
                 Vector mean = Vector.Fill(dim, 0.0);
                 double sigma = 2.0;
                 int lamb = 64;
-                Optimizer optimizer = new Optimizer(dim, RosenbrockChain, mean, sigma, lamb);
+                CRFMNES optimizer = new CRFMNES(dim, RosenbrockChain, mean, sigma, lamb);
                 int evalCnt = 0;
                 while (optimizer.FBest >= 1e-12)
                 {
@@ -110,7 +110,7 @@ namespace CRFMNES
                 Vector mean = Vector.Fill(dim, 3.0);
                 double sigma = 2.0;
                 int lamb = 16;
-                Optimizer optimizer = new Optimizer(dim, Ellipsoid, mean, sigma, lamb);
+                CRFMNES optimizer = new CRFMNES(dim, Ellipsoid, mean, sigma, lamb);
                 int evalCnt = 0;
                 while (optimizer.FBest >= 1e-12)
                 {
@@ -136,7 +136,7 @@ namespace CRFMNES
                 Vector mean = Vector.Fill(dim, 3.0);
                 double sigma = 2.0;
                 int lamb = 16;
-                Optimizer optimizer = new Optimizer(dim, Ellipsoid, mean, sigma, lamb);
+                CRFMNES optimizer = new CRFMNES(dim, Ellipsoid, mean, sigma, lamb);
                 int evalCnt = 0;
                 while (optimizer.FBest >= 1e-12)
                 {
@@ -162,7 +162,7 @@ namespace CRFMNES
                 Vector mean = Vector.Fill(dim, 3.0);
                 double sigma = 2.0;
                 int lamb = 16;
-                Optimizer optimizer = new Optimizer(dim, KTablet, mean, sigma, lamb);
+                CRFMNES optimizer = new CRFMNES(dim, KTablet, mean, sigma, lamb);
                 int evalCnt = 0;
                 while (optimizer.FBest >= 1e-12)
                 {
@@ -188,7 +188,7 @@ namespace CRFMNES
                 Vector mean = Vector.Fill(dim, 3.0);
                 double sigma = 2.0;
                 int lamb = 16;
-                Optimizer optimizer = new Optimizer(dim, KTablet, mean, sigma, lamb);
+                CRFMNES optimizer = new CRFMNES(dim, KTablet, mean, sigma, lamb);
                 int evalCnt = 0;
                 while (optimizer.FBest >= 1e-12)
                 {
@@ -214,7 +214,7 @@ namespace CRFMNES
                 Vector mean = Vector.Fill(dim, 3.0);
                 double sigma = 2.0;
                 int lamb = 1130;
-                Optimizer optimizer = new Optimizer(dim, Rastrigin, mean, sigma, lamb);
+                CRFMNES optimizer = new CRFMNES(dim, Rastrigin, mean, sigma, lamb);
                 int evalCnt = 0;
                 while (optimizer.FBest >= 1e-12)
                 {
@@ -240,7 +240,7 @@ namespace CRFMNES
                 Vector mean = Vector.Fill(dim, 3.0);
                 double sigma = 2.0;
                 int lamb = 1600;
-                Optimizer optimizer = new Optimizer(dim, Rastrigin, mean, sigma, lamb);
+                CRFMNES optimizer = new CRFMNES(dim, Rastrigin, mean, sigma, lamb);
                 int evalCnt = 0;
                 while (optimizer.FBest >= 1e-12)
                 {

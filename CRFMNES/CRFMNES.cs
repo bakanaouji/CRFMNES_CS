@@ -7,9 +7,9 @@ namespace CRFMNES
     delegate double Int2Double(int n);
     delegate double VectorInt2Double(Vector x, int n);
 
-    public class Optimizer
+    public class CRFMNES
     {
-        public Optimizer(int dim, ObjFunc objFunc, Vector m, double sigma, int lamb)
+        public CRFMNES(int dim, ObjFunc objFunc, Vector m, double sigma, int lamb)
         {
             this.dim = dim;
             this.objFunc = objFunc;
