@@ -45,6 +45,7 @@
     <Compile Include="Tests\OptimizerTests\EllipsoidTest.cs" />
     <Compile Include="Tests\OptimizerTests\KTabletTest.cs" />
     <Compile Include="Tests\OptimizerTests\RastriginTest.cs" />
+    <Compile Include="Tests\OptimizerTests\SphereTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Utils\" />
