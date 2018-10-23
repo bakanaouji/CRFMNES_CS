@@ -72,10 +72,12 @@ namespace CRFMNES.Tests
             vec[index] = value;
             for (int i = 0; i < dim; ++i)
             {
-                if (i == index) {
+                if (i == index)
+                {
                     Assert.IsTrue(IsEquals(vec[i], value));
                 }
-                else {
+                else
+                {
                     Assert.IsTrue(IsEquals(vec[i], 0.0));
                 }
             }
@@ -86,7 +88,8 @@ namespace CRFMNES.Tests
         {
             int dim = 7;
             Vector vec = new Vector(dim);
-            for (int i = 0; i < dim; ++i) {
+            for (int i = 0; i < dim; ++i)
+            {
                 vec[i] = i * 0.7;
             }
             Assert.IsTrue(IsEquals(vec.Max(), (dim - 1) * 0.7));
@@ -113,7 +116,8 @@ namespace CRFMNES.Tests
             RandomExp random = new RandomExp();
             Vector vec = random.RandN(dim);
             double normPow = 0.0;
-            for (int i = 0; i < dim; ++i) {
+            for (int i = 0; i < dim; ++i)
+            {
                 normPow += vec[i] * vec[i];
             }
             Assert.IsTrue(IsEquals(normPow, vec.NormPow()));
@@ -142,7 +146,8 @@ namespace CRFMNES.Tests
             Vector vec = random.RandN(dim);
             Vector oldVec = new Vector(vec);
             vec.Normalize();
-            for (int i = 0; i < dim; ++i) {
+            for (int i = 0; i < dim; ++i)
+            {
                 Assert.IsTrue(IsEquals(oldVec[i] / vec[i], oldVec[0] / vec[0]));
             }
             Assert.IsTrue(IsEquals(vec.Norm(), 1.0));
@@ -178,7 +183,8 @@ namespace CRFMNES.Tests
         {
             int dim = 14;
             Vector vec = new Vector(dim);
-            for (int i = 0; i < dim; ++i) {
+            for (int i = 0; i < dim; ++i)
+            {
                 vec[i] = i + 1;
             }
             Vector logVec = Vector.Log(vec);

@@ -18,12 +18,12 @@ namespace CRFMNES.Utils
         public Vector RandN(int dim)
         {
             Vector vec = new Vector(dim);
-            for (int i = 0; i < dim; ++i) {
+            for (int i = 0; i < dim; ++i)
+            {
                 vec[i] = RandN();
             }
             return vec;
         }
-
 
         private Random random;
     }

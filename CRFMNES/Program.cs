@@ -18,7 +18,8 @@ namespace CRFMNES
         static double Ellipsoid(Vector x)
         {
             double f = 0.0;
-            for (int i = 0; i < x.GetDim(); ++i) {
+            for (int i = 0; i < x.GetDim(); ++i)
+            {
                 double tmp = Math.Pow(1000.0, i / (x.GetDim() - 1.0)) * x[i];
                 f += tmp * tmp;
             }
@@ -29,10 +30,12 @@ namespace CRFMNES
         {
             double f = 0.0;
             int k = (int)(x.GetDim() / 4.0);
-            for (int i = 0; i < k; ++i) {
+            for (int i = 0; i < k; ++i)
+            {
                 f += x[i] * x[i];
             }
-            for (int i = k; i < x.GetDim(); ++i) {
+            for (int i = k; i < x.GetDim(); ++i)
+            {
                 f += (100.0 * x[i]) * (100.0 * x[i]);
             }
             return f;
@@ -42,7 +45,8 @@ namespace CRFMNES
         {
             double f = 0.0;
             f += 10.0 * x.GetDim();
-            for (int i = 0; i < x.GetDim(); ++i) {
+            for (int i = 0; i < x.GetDim(); ++i)
+            {
                 f += x[i] * x[i] - 10.0 * Math.Cos(2.0 * Math.PI * x[i]);
             }
             return f;
@@ -92,7 +96,7 @@ namespace CRFMNES
                     evalCnt += lamb;
                 }
                 evalCnts[ite] = evalCnt;
-                Console.WriteLine("evalCnt: {0}" ,evalCnt);
+                Console.WriteLine("evalCnt: {0}", evalCnt);
             }
             double meanEvalCnt = evalCnts.Sum() / iteNum;
             double sigmaEvalCnt = (evalCnts - meanEvalCnt).Norm() / Math.Sqrt(iteNum);

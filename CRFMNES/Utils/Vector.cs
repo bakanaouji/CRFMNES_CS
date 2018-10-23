@@ -138,7 +138,8 @@ namespace CRFMNES.Utils
         public static Vector Log(Vector v)
         {
             Vector vec = new Vector(v);
-            for (int i = 0; i < vec.GetDim(); ++i) {
+            for (int i = 0; i < vec.GetDim(); ++i)
+            {
                 vec[i] = Math.Log(vec[i]);
             }
             return vec;

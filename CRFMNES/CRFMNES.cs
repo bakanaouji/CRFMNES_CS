@@ -62,7 +62,8 @@ namespace CRFMNES
             double f(double a, double b) => ((1.0 + a * a) * Math.Exp(a * a / 2.0) / 0.24) - 10.0 - dim;
             double fPrime(double a) => (1.0 / 0.24) * a * Math.Exp(a * a / 2.0) * (3.0 + a * a);
             double hI = 1.0;
-            while(Math.Abs(f(hI, dim)) > 1e-10) {
+            while (Math.Abs(f(hI, dim)) > 1e-10)
+            {
                 hI = hI - 0.5 * (f(hI, dim) / fPrime(hI));
             }
             return hI;
@@ -128,7 +129,8 @@ namespace CRFMNES
 
             noOfEvals += lamb;
             g += 1;
-            if (fB < fBest) {
+            if (fB < fBest)
+            {
                 fBest = fB;
                 xBest = xB;
             }
@@ -246,7 +248,8 @@ namespace CRFMNES
             double nThRootDetA = Math.Exp(Vector.Log(D).Sum() / dim + Math.Log(1.0 + (v & v)) / (2.0 * dim));
             // update s, D
             Vector tmpG = new Vector(dim);
-            for (int i = 0; i < lamb; ++i) {
+            for (int i = 0; i < lamb; ++i)
+            {
                 tmpG += (z[i] * z[i] - Vector.Fill(dim, 1.0)) * weights[i];
             }
             double GSigma = tmpG.Sum() / dim;
