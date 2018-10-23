@@ -1,3 +1,7 @@
+# build
 packages/
+
+# globs
+*.user
 *.nupkg
 *.dll
