@@ -12,6 +12,8 @@ Please run the following command.
 $ nuget install CRFMNES
 ```
 
+Alternatively, you can [download it](https://www.nuget.org/packages/CRFMNES/) directly.
+
 ## Example
 
 This is a simple example that objective function is sphere function.
