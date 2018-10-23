@@ -3,7 +3,7 @@
   <metadata>
     <id>CRFMNES</id>
     <title>CRFMNES</title>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <authors>bakanaouji</authors>
     <owners>bakanaouji</owners>
     <licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
@@ -11,7 +11,7 @@
     <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>CR-FM-NES C# Package</description>
-    <releaseNotes>CRFMNES 1.0.2 release</releaseNotes>
+    <releaseNotes>CRFMNES 1.0.3 release. Fix name of optimizer class.</releaseNotes>
     <copyright>Copyright 2018</copyright>
     <tags>black-box-optimization c# crfmnes</tags>
   </metadata>
