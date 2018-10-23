@@ -55,7 +55,7 @@ namespace CRFMNES
             for (int ite = 0; ite < iteNum; ++ite)
             {
                 int dim = 40;
-                Vector mean = Vector.Fill(dim, 1.0);
+                Vector mean = Vector.Fill(dim, 0.0);
                 double sigma = 2.0;
                 int lamb = 40;
                 Optimizer optimizer = new Optimizer(dim, RosenbrockChain, mean, sigma, lamb);
@@ -81,7 +81,7 @@ namespace CRFMNES
             for (int ite = 0; ite < iteNum; ++ite)
             {
                 int dim = 80;
-                Vector mean = Vector.Fill(dim, 1.0);
+                Vector mean = Vector.Fill(dim, 0.0);
                 double sigma = 2.0;
                 int lamb = 64;
                 Optimizer optimizer = new Optimizer(dim, RosenbrockChain, mean, sigma, lamb);
